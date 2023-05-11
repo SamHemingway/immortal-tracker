@@ -8,6 +8,7 @@ import {
   Smile,
   Search,
   ChevronDown,
+  ChevronUp,
   HelpCircle,
 } from "react-feather";
 import HamburgerIcon from "../../HamburgerIcon";
@@ -27,6 +28,7 @@ export default function Icon({
     smile: Smile,
     search: Search,
     chevronDown: ChevronDown,
+    chevronUp: ChevronUp,
     menu: HamburgerIcon,
     help: HelpCircle,
   };
