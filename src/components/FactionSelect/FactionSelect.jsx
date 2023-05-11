@@ -68,7 +68,6 @@ export default function FactionSelect() {
           style={{
             marginTop: "100px",
             paddingTop: "65px",
-            width: "clamp(250px, 40vw, 500px)",
             boxShadow: `0px 0px 10px ${selectedRace.colour}`,
           }}
         >

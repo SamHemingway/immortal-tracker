@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
 import DatePicker from "../Primitives/DatePicker";
-import { ProgressContext } from "../../contexts/ProgressProvider";
 import { SelectionContext } from "../../contexts/SelectionProvider";
 import useProgressExists from "../../hooks/useProgressExists";
 import ButtonRadio from "../Primitives/ButtonRadios";
@@ -11,8 +10,6 @@ import useKeyboardShortcut from "../../hooks/useKeyboardShortcut";
 import Button from "../Primitives/Button";
 
 export default function ProgressInput({ setInputOpen, onSubmit }) {
-  const { allProgress, userPrefs } = React.useContext(ProgressContext);
-
   const { selectedFaction, selectedRace } = React.useContext(SelectionContext);
   const existingProgress = useProgressExists(selectedFaction);
 
@@ -24,7 +21,7 @@ export default function ProgressInput({ setInputOpen, onSubmit }) {
     enjoyedTheCampaign: "yes",
     completionStatus: "complete",
     date: new Date(),
-    campaignDifficulty: userPrefs?.difficulty || "legendary",
+    campaignDifficulty: "legendary",
     victoryType: undefined,
   };
 
@@ -46,6 +43,8 @@ export default function ProgressInput({ setInputOpen, onSubmit }) {
 
     setInputOpen(false);
   }
+
+  console.log(`Race colour: ${selectedRace.colour}`);
 
   return (
     <Wrapper>

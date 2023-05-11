@@ -57,6 +57,7 @@ const Content = styled(Dialog.Panel)`
   background: var(--colour-primary-200);
   padding: 32px;
   color: var(--colour-mono-700);
+  inline-size: clamp(300px, 60vw, 500px);
 `;
 
 const CloseButton = styled.button`

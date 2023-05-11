@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { ChevronDown, ChevronUp } from "react-feather";
 
-export default function AdditionalSection({
+export default function Disclosure({
   children,
   sectionOpen,
   setSectionOpen,

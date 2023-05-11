@@ -6,14 +6,12 @@ import styled from "styled-components";
 
 export default function DatePicker({ ...delegated }) {
   return (
-    <Wrapper>
+    <>
       <InputLabel label="Date" />
       <Picker {...delegated} />
-    </Wrapper>
+    </>
   );
 }
-
-const Wrapper = styled.div``;
 
 const Picker = styled(ReactDatePicker)`
   background: var(--colour-primary-100);
@@ -22,7 +20,7 @@ const Picker = styled(ReactDatePicker)`
   font-size: 1rem;
   border: none;
   display: block;
-  inline-size: min-content;
+  padding-right: 0;
   transition: color 500ms;
 
   &:hover {

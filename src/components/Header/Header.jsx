@@ -71,7 +71,7 @@ const Wrapper = styled.header`
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   padding-inline: var(--size-m);
-  inline-size: calc(100% - var(--size-m) * 2);
+  inline-size: 100%;
   box-shadow: var(--shadow-strong);
   color: var(--colour-primary-900);
 `;
