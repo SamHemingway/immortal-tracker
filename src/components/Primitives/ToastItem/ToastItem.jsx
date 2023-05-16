@@ -26,7 +26,7 @@ export default function ToastItem({ variant, id, children }) {
         variants={variants.springUp}
         initial="start"
         animate="end"
-        exit={{ opacity: 0, height: 0 }}
+        exit="exit"
       >
         <IconWrapper>
           <Icon

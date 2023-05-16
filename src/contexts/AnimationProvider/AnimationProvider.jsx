@@ -15,14 +15,6 @@ function AnimationProvider({ children }) {
   };
 
   const variants = {
-    fadeIn: {
-      start: {
-        opacity: 0,
-      },
-      end: {
-        opacity: 1,
-      },
-    },
     springUp: {
       start: {
         opacity: 0,
@@ -39,10 +31,10 @@ function AnimationProvider({ children }) {
             stiffness: 100,
           },
         },
-        // exit: {
-        //   opacity: 0,
-        //   y: shouldReduceMotion || -50,
-        // },
+        exit: {
+          opacity: 0,
+          y: shouldReduceMotion || -50,
+        },
       },
     },
     springDown: {
