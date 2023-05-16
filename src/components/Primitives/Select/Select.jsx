@@ -81,10 +81,7 @@ const Presentation = styled.div`
 
   ${NativeSelect}:focus-visible + & {
     outline: 2px solid;
-    outline-color: ${({ colour }) => {
-      console.log(`Outline colour: ${colour}`);
-      return colour ?? "currentColor";
-    }};
+    outline-color: ${({ colour }) => colour ?? "currentColor"};
     color: var(--colour-primary-900);
     transition: outline 100ms, color 100ms;
   }

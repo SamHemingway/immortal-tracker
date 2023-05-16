@@ -10,12 +10,20 @@ import React from "react";
  * @param {"Shift" | "Control" | "Meta" | "Alt" | "OS"} modifier - The modifier key that the user should hold down first to activate the keyboard shortcut.
  * @param {string} key - The activator key that the user should press whilst the modifier key is pressed
  * @param {keyboardShortcutCallback} callback - the callback function that is invoked when the user uses the keyboard shortcut.
+ * @param {boolean} debug - Debug mode (will log out what is happening). False by default.
  */
 
-export default function useKeyboardShortcut(modifier, key, callback) {
+export default function useKeyboardShortcut(
+  modifier,
+  key,
+  callback,
+  debug = false
+) {
   const acceptableModifiers = ["Shift", "Control", "Meta", "Alt", "OS"];
   const [keyPressed, setKeyPressed] = React.useState(false);
   const [modifierPressed, setModifierPressed] = React.useState(false);
+
+  const memoizedCallback = React.useCallback(callback, [callback]);
 
   function cleanInput(input) {
     return input.charAt(0).toUpperCase() + input.slice(1);
@@ -48,6 +56,7 @@ export default function useKeyboardShortcut(modifier, key, callback) {
 
     if (event.getModifierState(cleanModifier)) setModifierPressed(true);
     if (event.key === cleanKey) setKeyPressed(true);
+    if (debug) console.log(`useKeyboardShortcut: ${modifier} + ${key} pressed`);
   }, []);
 
   const handleKeyup = React.useCallback((event) => {
@@ -55,6 +64,8 @@ export default function useKeyboardShortcut(modifier, key, callback) {
     if (!event.getModifierState(cleanModifier) || key !== cleanKey) return;
     if (event.getModifierState(cleanModifier)) setModifierPressed(false);
     if (event.key === cleanKey) setKeyPressed(false);
+    if (debug)
+      console.log(`useKeyboardShortcut: ${modifier} + ${key} released`);
   }, []);
 
   React.useEffect(() => {
@@ -73,5 +84,5 @@ export default function useKeyboardShortcut(modifier, key, callback) {
     };
   }, [handleKeyup]);
 
-  if (modifierPressed && keyPressed) callback();
+  if (modifierPressed && keyPressed) memoizedCallback();
 }

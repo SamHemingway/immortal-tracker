@@ -10,6 +10,10 @@ import {
   ChevronDown,
   ChevronUp,
   HelpCircle,
+  AlertTriangle,
+  Info,
+  AlertOctagon,
+  X,
 } from "react-feather";
 import HamburgerIcon from "../../HamburgerIcon";
 
@@ -31,6 +35,10 @@ export default function Icon({
     chevronUp: ChevronUp,
     menu: HamburgerIcon,
     help: HelpCircle,
+    notice: Info,
+    warning: AlertTriangle,
+    error: AlertOctagon,
+    close: X,
   };
 
   const IconSVG = icons[id];

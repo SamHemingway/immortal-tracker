@@ -8,9 +8,13 @@ import Select from "../Primitives/Select";
 import Icon from "../Primitives/Icon";
 import useKeyboardShortcut from "../../hooks/useKeyboardShortcut";
 import Button from "../Primitives/Button";
+import { ToastContext } from "../../contexts/ToastProvider";
 
 export default function ProgressInput({ setInputOpen, onSubmit }) {
   const { selectedFaction, selectedRace } = React.useContext(SelectionContext);
+  const { setVariantChoice, setToastMessage, handleAddToast } =
+    React.useContext(ToastContext);
+
   const existingProgress = useProgressExists(selectedFaction);
 
   const initialState = existingProgress || {
@@ -35,16 +39,17 @@ export default function ProgressInput({ setInputOpen, onSubmit }) {
       .dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
   });
 
+  React.useEffect(() => {
+    setVariantChoice("check");
+    setToastMessage("Progress saved: " + status.lordName);
+  }, []);
+
   function handleSubmit(event) {
     event.preventDefault();
-
     onSubmit(status);
-    console.log(typeof status.date);
-
+    handleAddToast();
     setInputOpen(false);
   }
-
-  console.log(`Race colour: ${selectedRace.colour}`);
 
   return (
     <Wrapper>

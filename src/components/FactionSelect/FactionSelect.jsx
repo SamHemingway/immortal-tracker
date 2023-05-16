@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { RACES } from "../../assets/constants";
 import { SelectionContext } from "../../contexts/SelectionProvider";
 import { ProgressContext } from "../../contexts/ProgressProvider";
 import Modal from "../Primitives/Modal";

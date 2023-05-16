@@ -15,18 +15,7 @@ function AnimationProvider({ children }) {
   };
 
   const variants = {
-    fade: {
-      start: {
-        opacity: 0,
-      },
-      end: {
-        opacity: 1,
-        transition: {
-          delay: animationTimings.phaseThree,
-        },
-      },
-    },
-    fadeNoDelay: {
+    fadeIn: {
       start: {
         opacity: 0,
       },
@@ -37,17 +26,23 @@ function AnimationProvider({ children }) {
     springUp: {
       start: {
         opacity: 0,
-        y: shouldReduceMotion || "50px",
+        height: 0,
+        y: shouldReduceMotion || 50,
       },
       end: {
         opacity: 1,
+        height: "auto",
         y: 0,
-
         transition: {
-          delay: 2,
-          type: "spring",
-          stiffness: 100,
+          y: {
+            type: "spring",
+            stiffness: 100,
+          },
         },
+        // exit: {
+        //   opacity: 0,
+        //   y: shouldReduceMotion || -50,
+        // },
       },
     },
     springDown: {
@@ -85,78 +80,6 @@ function AnimationProvider({ children }) {
         },
       },
     },
-    cards: {
-      title: {
-        start: {
-          backgroundPosition: "1em 0em",
-          transition: { duration: "0.75", ease: "easeOut" },
-        },
-        hover: {
-          backgroundPosition: shouldReduceMotion ? "1em 0em" : "1em 1em",
-          backgroundColor: "hsla(33, 99%, 75%, 1)",
-        },
-
-        tap: {
-          backgroundPosition: shouldReduceMotion ? "1em 0em" : "1em 1.5em",
-          backgroundColor: "hsla(33, 99%, 75%, 1)",
-        },
-      },
-      icon: {
-        start: { scale: 1, transition: { duration: "0.75", ease: "easeOut" } },
-        hover: { scale: shouldReduceMotion ? 1 : 1.05 },
-        tap: { scale: shouldReduceMotion ? 1 : 0.95 },
-      },
-      panel: {
-        start: {
-          opacity: 0,
-        },
-        end: {
-          opacity: 1,
-        },
-      },
-      text: {
-        start: { y: shouldReduceMotion ? 0 : -20, opacity: 0 },
-        end: { y: 0, opacity: 1 },
-      },
-    },
-    hamburgerIcon: {
-      wrapper: {
-        open: !shouldReduceMotion ? undefined : { fill: "black" },
-      },
-      line1: {
-        open: shouldReduceMotion
-          ? undefined
-          : { d: "M 25 25 L 75 75", stroke: "white" },
-      },
-      line2: {
-        open: shouldReduceMotion ? undefined : { opacity: 0 },
-      },
-      line3: {
-        open: shouldReduceMotion
-          ? undefined
-          : { d: "M 25 75 L 75 25", stroke: "white" },
-      },
-    },
-    projectCards: shouldReduceMotion
-      ? {
-          initial: {
-            outline: "5px solid",
-            outlineColor: "hsla(358, 99%, 71%, 0)",
-          },
-          hover: {
-            outline: "5px solid",
-            outlineColor: "hsla(33, 99%, 70%, 1)",
-          },
-          tap: {
-            outline: "5px solid",
-            outlineColor: "hsla(358, 99%, 71%, 1)",
-          },
-        }
-      : {
-          initial: { scale: 1 },
-          hover: { scale: 1.025 },
-          tap: { scale: 0.975 },
-        },
   };
 
   return (

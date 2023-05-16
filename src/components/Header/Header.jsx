@@ -13,7 +13,7 @@ export default function Header() {
     <Wrapper>
       <AppHeader>Immortal Tracker</AppHeader>
       <Icons>
-        <SettingsButton
+        <HelpButton
           variant="ghost"
           size="small"
           style={{ "--padding": "4px 4px" }}
@@ -25,39 +25,23 @@ export default function Header() {
             size={24}
             strokeWidth={2}
           />
-        </SettingsButton>
+        </HelpButton>
         {helpOpen && (
           <HelpModal
             isOpen={helpOpen}
             setIsOpen={setHelpOpen}
           />
         )}
-        <SearchButton
-          variant="ghost"
-          size="small"
-          style={{ "--padding": "4px 4px" }}
-          onClick={() => setSearchOpen(!searchOpen)}
-        >
-          <Icon
-            id="search"
-            label="Search"
-            size={24}
-            strokeWidth={2}
-          />
-        </SearchButton>
-        {searchOpen && (
-          <FactionSearch
-            isOpen={searchOpen}
-            setIsOpen={setSearchOpen}
-          />
-        )}
+        <FactionSearch
+          isOpen={searchOpen}
+          setIsOpen={setSearchOpen}
+        />
       </Icons>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.header`
-  block-size: var(--size-xl);
   position: fixed;
   top: 0;
   left: 0;
@@ -81,9 +65,7 @@ const AppHeader = styled.h1`
   font-size: clamp(1.5rem, 5vw, 2rem);
 `;
 
-const SettingsButton = styled(Button)``;
-
-const SearchButton = styled(Button)``;
+const HelpButton = styled(Button)``;
 
 const Icons = styled.div`
   margin-inline-start: auto;

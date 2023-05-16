@@ -84,6 +84,22 @@ p, h1, h2, h3, h4, h5, h6 {
     background: var(--colour-primary-200);
   }
 
+  body::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  body::-webkit-scrollbar-thumb {
+  background-color: var(--colour-primary-600);
+  
+  &:hover {
+    background-color: var(--colour-primary-700);
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: var(--colour-primary-400);
+}
+
   input, select {
     font-size: 1rem;
   }

@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import Portal from "../Portal";
 import { X as Close } from "react-feather";
 import FocusLock from "react-focus-lock";
-import useEscapeKey from "../../../hooks/useEscapeKey";
+import useKeydown from "../../../hooks/useKeydown";
 import VisuallyHidden from "../VisuallyHidden";
 
 export default function Modal({
@@ -13,12 +13,11 @@ export default function Modal({
   icon = null,
   children,
 }) {
-  function handleEscKey(event) {
-    if (event.code === "Escape") {
-      setModalOpen(false);
-    }
+  function handleEscKey() {
+    setModalOpen(false);
   }
-  useEscapeKey(handleEscKey);
+
+  useKeydown("escape", handleEscKey);
 
   return (
     modalOpen && (
