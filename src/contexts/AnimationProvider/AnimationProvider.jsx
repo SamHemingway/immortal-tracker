@@ -33,7 +33,6 @@ function AnimationProvider({ children }) {
         },
         exit: {
           opacity: 0,
-          y: shouldReduceMotion || -50,
         },
       },
     },

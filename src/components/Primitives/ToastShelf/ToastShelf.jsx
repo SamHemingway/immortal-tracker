@@ -2,31 +2,41 @@ import React from "react";
 import ToastItem from "../ToastItem";
 import { ToastContext } from "../../../contexts/ToastProvider";
 import styled from "styled-components/macro";
+import { motion, AnimatePresence } from "framer-motion";
+import { AnimationContext } from "../../../contexts/AnimationProvider";
 
 function ToastShelf() {
   const { toastMessages } = React.useContext(ToastContext);
+  const { variants } = React.useContext(AnimationContext);
 
   return (
-    toastMessages.length > 0 && (
-      <Wrapper
-        role="region"
-        aria-live="polite"
-        aria-label="notifications"
-      >
-        {toastMessages.map(({ variant, message, id }) => {
-          return (
-            <ToastItemWrapper key={id}>
-              <ToastItem
-                variant={variant}
-                id={id}
+    <Wrapper
+      role="region"
+      aria-live="polite"
+      aria-label="notifications"
+    >
+      <AnimatePresence>
+        {toastMessages.length > 0 &&
+          toastMessages.map(({ variant, message, id }) => {
+            return (
+              <ToastItemWrapper
+                key={id}
+                variants={variants.springUp}
+                initial="start"
+                animate="end"
+                exit="exit"
               >
-                {message}
-              </ToastItem>
-            </ToastItemWrapper>
-          );
-        })}
-      </Wrapper>
-    )
+                <ToastItem
+                  variant={variant}
+                  id={id}
+                >
+                  {message}
+                </ToastItem>
+              </ToastItemWrapper>
+            );
+          })}
+      </AnimatePresence>
+    </Wrapper>
   );
 }
 
@@ -43,4 +53,4 @@ const Wrapper = styled.ol`
   list-style-type: none;
 `;
 
-const ToastItemWrapper = styled.li``;
+const ToastItemWrapper = styled(motion.li)``;

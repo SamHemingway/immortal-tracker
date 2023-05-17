@@ -20,40 +20,41 @@ export default function ToastItem({ variant, id, children }) {
   // }, []);
 
   return (
-    <AnimatePresence>
-      <Wrapper
-        toastVariant={variant}
-        variants={variants.springUp}
-        initial="start"
-        animate="end"
-        exit="exit"
+    // <AnimatePresence>
+    <Wrapper
+      toastVariant={variant}
+      // variants={variants.springUp}
+      // initial="start"
+      // animate="end"
+      // exit="exit"
+      // key={id}
+    >
+      <IconWrapper>
+        <Icon
+          size={24}
+          id={variant}
+          strokeWidth={2}
+        />
+      </IconWrapper>
+      <Content>
+        <VisuallyHidden>`${variant} - `</VisuallyHidden>
+        {children}
+      </Content>
+      <CloseButton
+        onClick={() => {
+          handleDismiss(id);
+        }}
+        aria-label="Dismiss Message"
+        aria-live="off"
       >
-        <IconWrapper>
-          <Icon
-            size={24}
-            id={variant}
-            strokeWidth={2}
-          />
-        </IconWrapper>
-        <Content>
-          <VisuallyHidden>`${variant} - `</VisuallyHidden>
-          {children}
-        </Content>
-        <CloseButton
-          onClick={() => {
-            handleDismiss(id);
-          }}
-          aria-label="Dismiss Message"
-          aria-live="off"
-        >
-          <Icon
-            size={24}
-            id="close"
-            strokeWidth={2}
-          />
-        </CloseButton>
-      </Wrapper>
-    </AnimatePresence>
+        <Icon
+          size={24}
+          id="close"
+          strokeWidth={2}
+        />
+      </CloseButton>
+    </Wrapper>
+    // </AnimatePresence>
   );
 }
 
