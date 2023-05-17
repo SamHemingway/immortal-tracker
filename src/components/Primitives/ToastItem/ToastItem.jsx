@@ -3,12 +3,9 @@ import styled from "styled-components/macro";
 import { ToastContext } from "../../../contexts/ToastProvider";
 import VisuallyHidden from "../VisuallyHidden/MyAttempt";
 import Icon from "../Icon";
-import { motion, AnimatePresence } from "framer-motion";
-import { AnimationContext } from "../../../contexts/AnimationProvider";
 
 export default function ToastItem({ variant, id, children }) {
   const { handleDismiss } = React.useContext(ToastContext);
-  const { variants } = React.useContext(AnimationContext);
 
   // React.useEffect(() => {
   //   const timer = setTimeout(() => {
@@ -20,14 +17,9 @@ export default function ToastItem({ variant, id, children }) {
   // }, []);
 
   return (
-    // <AnimatePresence>
     <Wrapper
       toastVariant={variant}
-      // variants={variants.springUp}
-      // initial="start"
-      // animate="end"
-      // exit="exit"
-      // key={id}
+      key={id}
     >
       <IconWrapper>
         <Icon
@@ -54,11 +46,10 @@ export default function ToastItem({ variant, id, children }) {
         />
       </CloseButton>
     </Wrapper>
-    // </AnimatePresence>
   );
 }
 
-const Wrapper = styled(motion.div)`
+const Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;

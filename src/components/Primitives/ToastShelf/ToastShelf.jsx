@@ -49,8 +49,8 @@ const Wrapper = styled.ol`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
   list-style-type: none;
+  padding: 16px;
 `;
 
 const ToastItemWrapper = styled(motion.li)``;

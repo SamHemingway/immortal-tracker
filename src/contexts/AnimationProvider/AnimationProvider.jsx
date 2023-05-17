@@ -31,8 +31,14 @@ function AnimationProvider({ children }) {
             stiffness: 100,
           },
         },
-        exit: {
-          opacity: 0,
+      },
+      exit: {
+        x: 500,
+        opacity: 0,
+        transition: {
+          x: {
+            duration: 0.5,
+          },
         },
       },
     },

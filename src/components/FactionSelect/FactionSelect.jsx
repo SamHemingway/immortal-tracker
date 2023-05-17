@@ -6,10 +6,13 @@ import Modal from "../Primitives/Modal";
 import ProgressInput from "../ProgressInput";
 import Tooltip from "../Primitives/Tooltip";
 import FactionProgressPreview from "../FactionProgressPreview";
+import { motion } from "framer-motion";
+import { AnimationContext } from "../../contexts/AnimationProvider";
 
 export default function FactionSelect() {
   const { selectedRace, selectedFaction, setSelectedFaction } =
     React.useContext(SelectionContext);
+  const { variants } = React.useContext(AnimationContext);
 
   const { allProgress, setAllProgress } = React.useContext(ProgressContext);
 
@@ -30,7 +33,12 @@ export default function FactionSelect() {
     <Wrapper>
       {selectedRace.lords.map((entry, index) => {
         return (
-          <FactionChoice key={index}>
+          <FactionChoice
+            key={index}
+            variants={variants}
+            initial="start"
+            animate="end"
+          >
             <Tooltip
               trigger={
                 <FactionButton
@@ -92,7 +100,7 @@ const Wrapper = styled.ul`
   padding-inline: 0;
 `;
 
-const FactionChoice = styled.li`
+const FactionChoice = styled(motion.li)`
   list-style-type: none;
 `;
 
