@@ -7,14 +7,14 @@ import Icon from "../Icon";
 export default function ToastItem({ variant, id, children }) {
   const { handleDismiss } = React.useContext(ToastContext);
 
-  // React.useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     handleDismiss(id);
-  //   }, 5000);
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, []);
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      handleDismiss(id);
+    }, 5000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <Wrapper

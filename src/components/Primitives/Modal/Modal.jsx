@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { X as Close } from "react-feather";
 import VisuallyHidden from "../VisuallyHidden/MyAttempt";
 import { Dialog } from "@headlessui/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Modal({
   isOpen,
@@ -19,14 +19,15 @@ export default function Modal({
         onClose={() => setIsOpen(false)}
       >
         <Backdrop
-          as={motion.div}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         />
         <ContentWrapper
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
+          exit={{ opacity: 0 }}
         >
           <Content {...delegated}>
             <CloseButton onClick={() => setIsOpen(false)}>
@@ -44,7 +45,7 @@ export default function Modal({
   );
 }
 
-const Backdrop = styled.div`
+const Backdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
   background: hsl(0deg 0% 0% / 0.75);

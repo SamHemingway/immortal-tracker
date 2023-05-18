@@ -56,11 +56,14 @@ function AnimationProvider({ children }) {
       },
       exit: {
         opacity: 0,
+        transition: {
+          duration: 0,
+        },
       },
     },
     bannerFade: {
       start: {
-        backgroundColor: "none",
+        backgroundColor: "hsla(360deg, 0%, 0%, 0)",
         backdropFilter: "blur(0px)",
       },
       end: {
@@ -71,8 +74,9 @@ function AnimationProvider({ children }) {
         },
       },
       exit: {
-        backgroundColor: "none",
+        backgroundColor: "hsla(360deg, 0%, 0%, 0)",
         backdropFilter: "blur(0px)",
+        delay: 0.2,
       },
     },
   };
