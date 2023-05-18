@@ -8,73 +8,71 @@ function AnimationProvider({ children }) {
   }
   const shouldReduceMotion = userPrefersReducedMotion();
 
-  const animationTimings = {
-    phaseOne: 0,
-    phaseTwo: 2,
-    phaseThree: 2.5,
-  };
-
   const variants = {
     springUp: {
       start: {
         opacity: 0,
         height: 0,
-        y: shouldReduceMotion || 50,
       },
       end: {
         opacity: 1,
         height: "auto",
-        y: 0,
         transition: {
-          y: {
+          height: {
             type: "spring",
             stiffness: 100,
           },
         },
       },
       exit: {
-        x: 500,
         opacity: 0,
-        transition: {
-          x: {
-            duration: 0.5,
-          },
-        },
+        height: 0,
       },
     },
     springDown: {
       start: {
         opacity: 0,
-        y: shouldReduceMotion || "-50px",
+        y: 10,
       },
-      finish: {
+      end: {
         opacity: 1,
         y: 0,
-
-        transition: {
-          duration: 1,
-          delay: animationTimings.phaseTwo,
-          type: "spring",
-          stiffness: 100,
-        },
+      },
+      exit: {
+        opacity: 0,
+        y: 10,
       },
     },
-    springRight: {
+    portraitFade: {
       start: {
         opacity: 0,
-        y: shouldReduceMotion ? 0 : 50,
       },
       end: {
         opacity: 1,
-        y: 0,
+        transition: {
+          duration: 0.2,
+          delay: 0.2,
+        },
+      },
+      exit: {
+        opacity: 0,
       },
     },
-    childrenShortStagger: {
+    bannerFade: {
+      start: {
+        backgroundColor: "none",
+        backdropFilter: "blur(0px)",
+      },
       end: {
+        backgroundColor: "hsla(360deg, 0%, 0%, 0.7)",
+        backdropFilter: "blur(5px)",
         transition: {
-          delayChildren: 0.1,
-          staggerChildren: 0.1,
+          duration: 0.1,
         },
+      },
+      exit: {
+        backgroundColor: "none",
+        backdropFilter: "blur(0px)",
       },
     },
   };

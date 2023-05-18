@@ -8,23 +8,24 @@ function ToastProvider({ children }) {
     `This is a toast message!`
   );
 
-  const [toastMessages, setToastMessages] = React.useState([
-    {
-      variant: "check",
-      message: "Here's a toast message",
-      id: crypto.randomUUID(),
-    },
-    {
-      variant: "check",
-      message: "Here's a toast message",
-      id: crypto.randomUUID(),
-    },
-    {
-      variant: "check",
-      message: "Here's a toast message",
-      id: crypto.randomUUID(),
-    },
-  ]);
+  const [toastMessages, setToastMessages] = React.useState([]);
+  // const [toastMessages, setToastMessages] = React.useState([
+  //   {
+  //     variant: "check",
+  //     message: "Here's a toast message",
+  //     id: crypto.randomUUID(),
+  //   },
+  //   {
+  //     variant: "check",
+  //     message: "Here's a toast message",
+  //     id: crypto.randomUUID(),
+  //   },
+  //   {
+  //     variant: "check",
+  //     message: "Here's a toast message",
+  //     id: crypto.randomUUID(),
+  //   },
+  // ]);
 
   const handleEscape = React.useCallback(() => {
     setToastMessages([]);

@@ -6,7 +6,7 @@ import Modal from "../Primitives/Modal";
 import ProgressInput from "../ProgressInput";
 import Tooltip from "../Primitives/Tooltip";
 import FactionProgressPreview from "../FactionProgressPreview";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AnimationContext } from "../../contexts/AnimationProvider";
 
 export default function FactionSelect() {
@@ -30,12 +30,18 @@ export default function FactionSelect() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper
+      variants={variants.bannerFade}
+      initial="start"
+      animate="end"
+      exit="exit"
+      key={selectedRace.raceID}
+    >
       {selectedRace.lords.map((entry, index) => {
         return (
           <FactionChoice
             key={index}
-            variants={variants}
+            variants={variants.portraitFade}
             initial="start"
             animate="end"
           >
@@ -54,7 +60,7 @@ export default function FactionSelect() {
                 >
                   <Banner
                     src={`../../assets/images/races/${selectedRace.raceID}/${entry.lordID}/portrait.avif`}
-                    alt={entry.factionName}
+                    alt={entry.lordName}
                     colour={selectedRace.colour}
                   />
                 </FactionButton>
@@ -67,34 +73,29 @@ export default function FactionSelect() {
           </FactionChoice>
         );
       })}
-      {inputOpen && (
-        <Modal
-          isOpen={inputOpen}
-          setIsOpen={setInputOpen}
-          title={`Enter your progress for ${selectedFaction.factionName}`}
-          style={{
-            marginTop: "100px",
-            paddingTop: "65px",
-            boxShadow: `0px 0px 10px ${selectedRace.colour}`,
-          }}
-        >
-          <ProgressInput
-            setInputOpen={setInputOpen}
-            onSubmit={factionProgressSubmit}
-          />
-        </Modal>
-      )}
+      <Modal
+        isOpen={inputOpen}
+        setIsOpen={setInputOpen}
+        title={`Enter your progress for ${selectedFaction.factionName}`}
+        style={{
+          marginTop: "100px",
+          paddingTop: "65px",
+          boxShadow: `0px 0px 10px ${selectedRace.colour}`,
+        }}
+      >
+        <ProgressInput
+          setInputOpen={setInputOpen}
+          onSubmit={factionProgressSubmit}
+        />
+      </Modal>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.ul`
-  color: red;
-  margin-block-start: auto;
+const Wrapper = styled(motion.ul)`
   display: flex;
   justify-content: space-around;
   align-items: end;
-  background: hsla(360deg, 0%, 0%, 0.7);
   position: absolute;
   inset: 0;
   padding-inline: 0;
@@ -111,6 +112,9 @@ const FactionButton = styled.button`
 
   &:focus-visible {
     outline: none;
+  }
+
+  &:hover {
   }
 `;
 
