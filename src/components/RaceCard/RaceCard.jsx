@@ -16,12 +16,13 @@ export default function RaceCard({ race }) {
       <RaceButton
         onClick={() => handleClick(race)}
         race={race}
+        activated={selectedRace === race}
       >
         {selectedRace.raceID !== race.raceID && (
           <FactionTitle>{race.name}</FactionTitle>
         )}
       </RaceButton>
-      {selectedRace === race && <FactionSelect selectedRace={selectedRace} />}
+      {selectedRace === race && <FactionSelect />}
       <RaceInfo race={race} />
     </Wrapper>
   );
@@ -49,10 +50,21 @@ const RaceButton = styled.button`
   font-size: 1rem;
   padding: 0;
   align-items: flex-start;
+  will-change: filter;
+  transition: filter 500ms;
 
   &:focus-visible {
     outline: 2px solid var(--colour-mono-900);
     outline-offset: -2px;
+  }
+
+  &:hover {
+    filter: brightness(1.2) saturate(1.2);
+    transition: filter 100ms;
+  }
+
+  &:active {
+    filter: brightness(0.5) saturate(0.5);
   }
 `;
 

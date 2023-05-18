@@ -22,6 +22,7 @@ const Picker = styled(ReactDatePicker)`
   display: block;
   padding-right: 0;
   transition: color 500ms;
+  inline-size: 100%;
 
   &:hover {
     color: var(--colour-primary-900);

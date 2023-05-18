@@ -10,15 +10,17 @@ function ToastShelf() {
   const { variants } = React.useContext(AnimationContext);
 
   return (
-    <Wrapper
-      role="region"
-      aria-live="polite"
-      aria-label="notifications"
-    >
-      <AnimatePresence>
-        {toastMessages.length > 0 &&
-          toastMessages.map(({ variant, message, id }) => {
-            return (
+    <AnimatePresence>
+      {toastMessages.length > 0 && (
+        <Wrapper
+          role="region"
+          aria-live="assertive"
+          aria-label="Notification"
+          variants={variants.springUp}
+          exit="exit"
+        >
+          <AnimatePresence>
+            {toastMessages.map(({ variant, message, id }) => (
               <ToastItemWrapper
                 key={id}
                 variants={variants.springUp}
@@ -26,31 +28,37 @@ function ToastShelf() {
                 animate="end"
                 exit="exit"
               >
-                <ToastItem
-                  variant={variant}
-                  id={id}
-                >
-                  {message}
-                </ToastItem>
+                <FixExitAnimations>
+                  <ToastItem
+                    variant={variant}
+                    id={id}
+                  >
+                    {message}
+                  </ToastItem>
+                </FixExitAnimations>
               </ToastItemWrapper>
-            );
-          })}
-      </AnimatePresence>
-    </Wrapper>
+            ))}
+          </AnimatePresence>
+        </Wrapper>
+      )}
+    </AnimatePresence>
   );
 }
 
 export default React.memo(ToastShelf);
 
-const Wrapper = styled.ol`
+const Wrapper = styled(motion.ol)`
   position: fixed;
   right: 0;
   bottom: 0;
+  list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  list-style-type: none;
-  padding: 16px;
 `;
 
 const ToastItemWrapper = styled(motion.li)``;
+
+const FixExitAnimations = styled.div`
+  padding-inline-end: var(--size-m);
+  padding-block-end: var(--size-m);
+`;
