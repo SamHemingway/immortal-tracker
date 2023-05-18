@@ -28,13 +28,6 @@ const GlobalStyle = createGlobalStyle`
 }
 
 /*
-  3. Allow percentage-based heights in the application
-*/
-html, body {
-  height: 100%;
-}
-
-/*
   Typographic tweaks!
   4. Add accessible line-height
   5. Improve text rendering
