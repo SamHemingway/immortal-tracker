@@ -77,8 +77,7 @@ export default function FactionSearch({ isOpen, setIsOpen }) {
             />
           </SearchBarWrapper>
           <SearchResults>
-            {query.length < 3 && <p>Type 3 or more characters</p>}
-            {query.length > 2 && filteredLords < 1 ? (
+            {filteredLords < 1 ? (
               <p>No lords/factions found!</p>
             ) : (
               filteredLords.map((lord) => (
